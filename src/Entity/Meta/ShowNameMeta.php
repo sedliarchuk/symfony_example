@@ -9,12 +9,12 @@ class ShowNameMeta
 {
     #[Assert\NotBlank]
     #[Assert\Length(min: 3, max: 250)]
-    #[Assert\Regex('~[a-Z]{1,}~')]
+    #[Assert\Regex('~^[A-z]{1,}$~')]
     #[Groups(['name'])]
     private string $name;
 
-    #[Assert\Regex('~[0-9]{1,}~')]
-    private ?int $number = null;
+    #[Assert\Regex('~^[0-9]{1,}$~')]
+    private ?string $number = null;
 
     /**
      * @return string
@@ -33,17 +33,17 @@ class ShowNameMeta
     }
 
     /**
-     * @return int|null
+     * @return string|null
      */
-    public function getNumber(): ?int
+    public function getNumber(): ?string
     {
         return $this->number;
     }
 
     /**
-     * @param int|null $number
+     * @param string|null $number
      */
-    public function setNumber(?int $number): void
+    public function setNumber(?string $number): void
     {
         $this->number = $number;
     }

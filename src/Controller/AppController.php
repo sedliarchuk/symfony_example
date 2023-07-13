@@ -38,9 +38,9 @@ class AppController extends AbstractController
     public function showName(Request $request): Response
     {
         try {
-            $obj = $this->serializer->deserialize($request->request->all(), ShowNameMeta::class);
+            $obj = $this->serializer->denormalize($request->request->all(), ShowNameMeta::class);
         } catch (\Exception $e) {
-            $this->json($e, Response::HTTP_BAD_REQUEST);
+            return $this->json($e, Response::HTTP_BAD_REQUEST);
         }
         $errors = $this->validator->validate($obj);
 
